@@ -40,3 +40,66 @@ const siteContent = {
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+let theNav = document.querySelector("nav")
+let last = document.createElement("a")
+let first = document.createElement("a")
+
+last.setAttribute("href", "#")
+first.setAttribute("href", "#")
+theNav.appendChild(last)
+theNav.prepend(first)
+
+
+let theNavA = document.querySelectorAll("nav a")
+theNavA.forEach( (item,index )=> {
+  item.innerText = siteContent["nav"][Object.keys(siteContent["nav"])[index - 1]]
+  item.style.color = "green"
+})
+
+last.innerText = "Hula Hoops"
+first.innerText = "No hoops"
+
+
+
+let theHeader = document.querySelector("h1")
+theHeader.textContent = siteContent["cta"]["h1"]
+
+let ctaImg = document.querySelector(".cta img")
+ctaImg.setAttribute("src", siteContent["cta"]["img-src"])
+
+let ctaButton = document.querySelector("button")
+ctaButton.innerText = siteContent["cta"]["button"]
+
+let mainContent = Object.entries(siteContent["main-content"])
+let bottomTopH4 = document.querySelectorAll(".main-content h4")
+let bottomTopContent = document.querySelectorAll(".main-content p")
+let middleImg = document.querySelector(".main-content img")
+let mainContentH4 = []
+let theMainContent = []
+
+mainContent.forEach( (item) => {
+  item[0].includes("h4") ? mainContentH4.push(item[1]) : item[0].includes("content") ? theMainContent.push(item[1]) : null
+})
+
+bottomTopH4.forEach((item, index) => {
+  item.innerText = mainContentH4[index]
+})
+bottomTopContent.forEach((item,index) => {
+  item.innerText = theMainContent[index]
+})
+
+middleImg.setAttribute("src", siteContent["main-content"]["middle-img-src"])
+
+let contactH4 = document.querySelector(".contact h4")
+contactH4.innerText = siteContent["contact"]["contact-h4"]
+
+let contactP = document.querySelectorAll(".contact p")
+contactP.forEach((item, index) => {
+  item.innerText = Object.values(siteContent["contact"])[index+1]
+})
+
+let footerP = document.querySelector("footer p")
+footerP.innerText = siteContent["footer"]["copyright"]
+
+
